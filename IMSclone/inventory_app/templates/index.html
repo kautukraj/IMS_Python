@@ -1,0 +1,14 @@
+{% extends 'nav_bar.html' %} <!-- using DTL to inherit the nav_bar.html properties using extends tag -->
+
+{% block body %}
+
+<br>
+
+    <div class="button-group">
+        <a href="{% url 'login' %}" class="btn btn-primary btn-md btn-trim" role="button"> Admin</a>
+      <a href="{% url 'manager_module' %}" class="btn btn-primary btn-md btn-trim" role="button"> Manager</a>
+      
+    </div>
+
+
+{% endblock %}    

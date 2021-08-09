@@ -1,0 +1,34 @@
+{% extends 'nav_bar.html' %}
+
+{% block body %}
+
+  <div class="container"> <!-- Bootstrap property to determine site layout -->
+    <form method="POST">
+      <br>
+      <br>
+      {% csrf_token %}
+
+      <h4>{{ header }}</h4>
+
+      {% for field in form %} <!-- using for loop in Django Template Language -->
+      <div class="form-group row"> <!-- define a devision or section in our page -->
+        <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>
+        <!-- Labels are used to provide additional information about something -->
+        <div class="col-10">
+          {{ field }}
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-6">
+
+          <button type="submit" class="btn btn-primary">Add Car</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+{% endblock %}

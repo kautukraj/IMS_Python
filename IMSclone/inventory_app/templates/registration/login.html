@@ -1,0 +1,16 @@
+{% extends 'nav_bar.html' %} <!-- using DTL to inherit the nav_bar.html properties using extends tag -->
+
+{% block body %}
+
+<h2>Admin Login</h2> <!-- heading tag -->
+<br> <!-- line break tag -->
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }} <!-- will render them wrapped in <p> (paragraph) tags -->
+  <button type="submit">Login</button>
+</form>
+
+{% endblock %}
+
+<!-- Cross Site Request Forgery protection -->

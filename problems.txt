@@ -1,0 +1,6 @@
+print in comma separated format
+rupee symbol in price
+
+browser resize problem
+
+BIG PROBLEM of ADMIN and MANAGER module linking

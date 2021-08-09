@@ -1,0 +1,49 @@
+{% load static %} <!-- include contents from static folder, including favicon -->
+<!DOCTYPE html>
+<html>
+  <head>
+      {% load static %}
+    <title>Maruti Suzuki</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+    <!--  The <link> tag defines a link between a document and an external resource -->
+    <!-- The rel attribute specifies the relationship between the current document and the linked document -->
+
+  </head>
+
+
+  <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.min.css' %}"/>
+  <!-- The <link> tag is used to link to external style sheets -->
+
+
+<body>
+<!-- navbar is taken from https://getbootstrap.com/docs/4.1/examples/navbars/ -->
+ 
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'index' %}"> Maruti Suzuki Inventory Management</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Logout</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+  <br>
+    <div class="container"> <!-- this is the section which is going to be replaced by other files
+      // Documentation used : https://docs.djangoproject.com/en/2.2/ref/templates/language/ -->
+      {% block body %} <!-- using DTL (Django Template Language) to create an start and end block construct. -->
+
+
+      {% endblock%}
+
+    </div>
+
+  </body>
+</html>

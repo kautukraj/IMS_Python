@@ -1,0 +1,74 @@
+{% extends 'nav_bar.html' %} <!-- using DTL to inherit the nav_bar.html properties using extends tag -->
+
+{% block body %}
+
+<br>
+
+    <div class="button-group">
+      <a href="{% url 'display_hatchbacks_manager' %}" class="btn btn-primary btn-md btn-trim" role="button"> Hatchbacks</a>
+      <!--<a href="{% url 'add_hatchback' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a> -->
+
+      <a href="{% url 'display_sedans_manager' %}" class="btn btn-primary btn-md btn-trim" role="button"> Sedans</a>
+      <!-- <a href="{% url 'add_sedan' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a> -->
+
+      <a href="{% url 'display_SUVsMUVs_manager' %}" class="btn btn-primary btn-md btn-trim" role="button"> SUVs/MUVs</a>
+      <!-- <a href="{% url 'add_SUVMUV' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a> -->
+
+      <a href="{% url 'display_vans_manager' %}" class="btn btn-primary btn-md btn-trim" role="button"> Vans</a>
+      <!-- <a href="{% url 'add_van' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a> -->
+ 
+    </div>
+
+<br>
+<h4> {{header}}  </h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Mileage</th>
+        <th>Stock</th>
+        <th>Waiting period</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for item in items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.mileage }}</td>
+        <td>{{ item.stock }}</td>
+        <td>{{ item.wait_time }}</td>
+
+        {% if header == "Hatchbacks" %}
+        <td>
+            <a href="{% url 'edit_hatchback_manager' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+
+        </td>
+        {% elif header == "Sedans" %}
+        <td>
+            <a href="{% url 'edit_sedan_manager' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+
+        </td>
+        {% elif header == "SUVs/MUVs" %}
+        <td>
+            <a href="{% url 'edit_SUVMUV_manager' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+
+        </td>
+        {% else %}
+        <td>
+            <a href="{% url 'edit_van_manager' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+
+        </td>
+        {% endif %}
+      </tr>
+        {% endfor %}
+
+     </tbody>
+
+  </table>
+
+{% endblock %}

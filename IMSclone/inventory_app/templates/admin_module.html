@@ -1,0 +1,76 @@
+{% extends 'nav_bar.html' %} <!-- using DTL to inherit the nav_bar.html properties using extends tag -->
+
+{% block body %}
+
+<br>
+
+    <div class="button-group">
+      <a href="{% url 'display_hatchbacks' %}" class="btn btn-primary btn-md btn-trim" role="button"> Hatchbacks</a>
+      <a href="{% url 'add_hatchback' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_sedans' %}" class="btn btn-primary btn-md btn-trim" role="button"> Sedans</a>
+      <a href="{% url 'add_sedan' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_SUVsMUVs' %}" class="btn btn-primary btn-md btn-trim" role="button"> SUVs/MUVs</a>
+      <a href="{% url 'add_SUVMUV' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_vans' %}" class="btn btn-primary btn-md btn-trim" role="button"> Vans</a>
+      <a href="{% url 'add_van' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+    </div>
+<!-- The <a> tag defines a hyperlink, which is used to link from one page to another. 
+The most important attribute of the <a> element is the href attribute, which indicates the link's destination.-->
+<br>
+<h4> {{header}}  </h4>
+  <table class="table table-hover">
+    <thead> <!-- The <thead> tag is used to group header content in an HTML table -->
+      <tr> <!-- The <tr> tag defines a row in an HTML table-->
+        <th>Name</th> <!-- The <th> tag defines a column in an HTML table. -->
+        <th>Price</th>
+        <th>Mileage</th>
+        <th>Stock</th>
+        <th>Waiting period</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody> <!-- The <tbody> tag is used to group the body content in an HTML table. -->
+
+      {% for item in items %}
+      <tr>
+        <td>{{ item.name }}</td> <!-- The <td> tag defines a stanDard cell in an HTML table. -->
+        <td>{{ item.price }}</td>
+        <td>{{ item.mileage }}</td>
+        <td>{{ item.stock }}</td>
+        <td>{{ item.wait_time }}</td>
+
+        {% if header == "Hatchbacks" %}
+        <td>
+            <a href="{% url 'edit_hatchback' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <!-- ARIA (Accessible Rich Internet Applications) provides an attribute which allows to mark an element as activatable. -->
+            <a href="{% url 'delete_hatchback' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% elif header == "Sedans" %}
+        <td>
+            <a href="{% url 'edit_sedan' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_sedan' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% elif header == "SUVs/MUVs" %}
+        <td>
+            <a href="{% url 'edit_SUVMUV' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_SUVMUV' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% else %}
+        <td>
+            <a href="{% url 'edit_van' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_van' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+        {% endif %}
+      </tr>
+        {% endfor %}
+
+     </tbody>
+
+  </table>
+
+{% endblock %}
